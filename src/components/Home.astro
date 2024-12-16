@@ -1,0 +1,242 @@
+---
+import { getCollection, render } from "astro:content";
+import { Button, buttonVariants } from "./ui/button";
+import Navbar from "./ui/navbar";
+import ProfileBadge from "./ui/profile-badge";
+import Project from "./ui/project";
+import AvatarCL from "./ui/avatar-cl";
+import { Badge } from "./ui/badge";
+import Footer from "./ui/footer";
+import Ticker from "./ui/ticker";
+import HeaderSection from "./ui/header-section";
+import { ArrowDown } from "lucide-react";
+import Link from "./ui/link";
+
+const tickerImagesFirst = [
+    "/images/bg-cta/img-1.webp",
+    "/images/bg-cta/img-2.webp",
+    "/images/bg-cta/img-3.webp",
+    "/images/bg-cta/img-4.webp",
+    "/images/bg-cta/img-5.webp",
+    "/images/bg-cta/img-6.webp",
+];
+const tickerImagesSecondary = [
+    "/images/bg-cta/img-7.webp",
+    "/images/bg-cta/img-8.webp",
+    "/images/bg-cta/img-9.webp",
+    "/images/bg-cta/img-10.webp",
+    "/images/bg-cta/img-11.webp",
+    "/images/bg-cta/img-12.webp",
+];
+const skills = [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Figma",
+    "Divi",
+    "WordPress",
+    "React",
+    "ViteJS",
+    "Astro",
+    "shadcn/ui",
+    "Tailwind",
+    "Bootstrap",
+];
+const projects = await getCollection("projects");
+---
+
+<div id="container" class="max-w-[1200px] mx-auto px-5">
+    <main class="relative flex flex-col">
+        <Navbar client:load />
+        <section
+            id="header"
+            class="min-h-[calc(100vh-64px)] flex flex-col justify-end gap-9 pb-20 pt-32 overflow-hidden mb-24"
+        >
+            <ProfileBadge client:load />
+            <h1
+                class="lg:text-7xl md:text-5xl text-3xl font-medium animate-fade-in"
+            >
+                Diseño sitios web que captan la atención y transforman visitas
+                en clientes
+            </h1>
+            <p
+                class="sm:text-xl text-lg text-muted-foreground w-full max-w-2xl"
+            >
+                Originario de Nuevo León, México. Cuento con más de 4 años de
+                experiencia en Diseño Web.
+            </p>
+            <div class="flex gap-4">
+                <Link
+                    href="https://wa.me/8112802209"
+                    isExternal
+                    className={buttonVariants({ variant: "default" })}
+                >
+                    WhatsApp
+                </Link>
+                <Link
+                    href="#projects"
+                    className={buttonVariants({ variant: "ghost" })}
+                >
+                    Ver proyectos
+                    <ArrowDown />
+                </Link>
+            </div>
+        </section>
+        <section id="projects" class="scroll-mt-28 mb-24">
+            <HeaderSection>Proyectos recientes</HeaderSection>
+            <div class="flex flex-col gap-24">
+                {
+                    projects.map(async (project: any) => {
+                        const { Content } = await render(project);
+                        const { data } = project;
+
+                        return (
+                            <div>
+                                <Project {...data}>
+                                    <Content />
+                                </Project>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </section>
+        <section id="about" class="scroll-mt-28 mb-24">
+            <HeaderSection>Acerca de mí</HeaderSection>
+            <div class="relative flex lg:flex-row flex-col gap-16">
+                <div
+                    class="flex flex-col lg:w-1/2 lg:sticky lg:top-28 h-fit gap-6"
+                >
+                    <div class="w-full dark:bg-white bg-border rounded-xl">
+                        <img src="/images/about/about.webp" />
+                    </div>
+                    <div class="flex flex-col gap-8">
+                        <h3 class="lg:text-2xl text-xl font-medium">
+                            Soy Jorge Castillo — Creo sitios web como
+                            herramientas para hacer crecer ideas.
+                        </h3>
+                        <Link
+                            href="https://wa.me/8112802209"
+                            isExternal
+                            className={`w-fit ` +
+                                buttonVariants({ variant: "default" })}
+                        >
+                            WhatsApp
+                        </Link>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 prose dark:prose-invert">
+                    <p class="font-medium">Mi historia como diseñador web 🚀</p>
+                    <p>
+                        Mi pasión por la programación comenzó en la
+                        preparatoria, donde di mis primeros pasos creando página
+                        web con tecnologías fundamentales como HTML, CSS,
+                        JavaScript, SQL y PHP. Sin embargo, mi interés por el
+                        diseño viene de mucho antes, gracias a mi experiencia
+                        previa en diseño gráfico y edición multimedia. Así que
+                        busque combinar ambos mundos: funcionalidad e interfaces
+                        atractivas.
+                    </p>
+                    <p>
+                        Después de trabajar en varios proyectos full-stack, me
+                        di cuenta del gran esfuerzo que implicaba desarrollar
+                        cada nuevo sitio web desde cero. Esto me llevó a
+                        explorar herramientas no-code, lo que marco un giro
+                        importante en mi carrera: dejé de lado la programación
+                        pura para especializarme en diseño web, optimizando
+                        tareas sin sacrificar creatividad ni calidad.
+                    </p>
+                    <p>
+                        Como freelance, he colaborado con emprendedores y dueños
+                        de negocios, creando proyectos que me han permitido
+                        desarrollar habilidades clave. Además de manejar
+                        herramientas como Figma, WordPress y Divi, he aprendido
+                        a gestionar proyectos, dar seguimiento al feedback y
+                        comunicarme efectivamente con mis clientes.
+                    </p>
+                    <p>
+                        Soy un apasionado del aprendizaje continuo. Cada día me
+                        motiva descubrir algo nuevo, ya sea relacionado a mi
+                        profesión o temas como desarrollo personal,
+                        productividad y psicología. Estos intereses no solo
+                        mejoran quién soy como persona, sino también la manera
+                        en que aporto valor a cada proyecto que emprendo.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="scroll-mt-28 mb-24">
+            <HeaderSection>Habilidades</HeaderSection>
+            <div class="flex lg:flex-row flex-col gap-9">
+                <div class="lg:w-1/2 text-muted-foreground">
+                    <p>
+                        Trabajo con programas y métodos que combinan la gestión
+                        de proyectos, la programación y el diseño de interfaces,
+                        para alcanzar objetivos empresariales. Cada una de estas
+                        habilidades aporta valor y refuerza mi crecimiento
+                        profesional.
+                    </p>
+                </div>
+                <div
+                    class="flex flex-wrap gap-2 lg:justify-end justify-start lg:w-1/2 text-base"
+                >
+                    {
+                        skills.map((skill) => (
+                            <Badge
+                                variant="outline"
+                                className="text-md font-normal py-2 px-6"
+                            >
+                                {skill}
+                            </Badge>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+        <section
+            id="cta"
+            class="relative h-[70vh] flex flex-col justify-center"
+        >
+            <div class="absolute w-full h-full flex justify-end gap-6">
+                <div
+                    class="lg:hidden absolute w-full h-full z-[1] bg-gradient-to-b dark:from-background dark:via-[rgba(10,10,10,0.85)] dark:to-[rgba(10,10,10,1)] from-background via-[rgba(255,255,255,0)] to-[rgba(255,255,255,1)]"
+                >
+                </div>
+                <div
+                    class="lg:block hidden absolute w-full h-full z-[1] bg-gradient-to-b dark:from-background dark:via-[rgba(10,10,10,0)] dark:to-[rgba(10,10,10,1)] from-background via-[rgba(255,255,255,0)] to-[rgba(255,255,255,1)]"
+                >
+                </div>
+                <div
+                    class="lg:block hidden absolute bg-gradient-to-tr dark:from-[rgba(10,10,10,1)] dark:via-[rgba(10,10,10,0.85)] dark:to-[rgba(10,10,10,0)] from-[rgba(255,255,255,1)] via-[rgba(255,255,255,0.4)] to-[rgba(255,255,255,0)] w-full h-full z-[1]"
+                >
+                </div>
+                <Ticker
+                    images={tickerImagesSecondary}
+                    className="animate-scroll-reverse"
+                />
+                <Ticker images={tickerImagesFirst} />
+            </div>
+            <div
+                class="flex flex-col lg:items-start items-center lg:text-start text-center gap-9 lg:max-w-[560px] z-[2]"
+            >
+                <div class="flex flex-col gap-3">
+                    <h2 class="text-5xl">Creemos nuevas ideas</h2>
+                    <p class="text-muted-foreground">
+                        Escríbeme para conocer más sobre mí y mi trabajo.
+                        Siempre es emocionante enfrentar nuevos retos y
+                        convertir ideas en realidad.
+                    </p>
+                </div>
+                <Link
+                    href="https://wa.me/8112802209"
+                    isExternal
+                    className={buttonVariants({ variant: "default" }) +
+                        ` w-fit`}
+                >
+                    WhatsApp
+                </Link>
+            </div>
+        </section>
+        <Footer />
+    </main>
+</div>
