@@ -35,7 +35,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="https://github.com/jorgesoriax"
+                                    href="https://github.com/jorge-csx"
                                     isExternal
                                 >
                                     Github

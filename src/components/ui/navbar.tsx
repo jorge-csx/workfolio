@@ -10,7 +10,7 @@ import Link from "./link";
 
 const Navbar = () => {
     return (
-        <nav className="animate-nav-slide-from-above w-full flex justify-between items-center py-3 sticky top-0 z-10 dark:bg-[rgba(0,0,0,0.8)] bg-[rgba(255,255,255,0.95)]">
+        <nav className="animate-nav-slide-from-above w-full flex justify-between items-center py-3 sticky top-0 z-10 dark:bg-[rgba(10,10,10,0.8)] bg-[rgba(255,255,255,0.95)]">
             <div>
                 <p className="text-xl font-semibold">Wooorkfolio</p>
             </div>
